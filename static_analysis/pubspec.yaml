@@ -1,7 +1,7 @@
 name: spreeloop_core_static_analysis
 description: "Spreeloop static analysis package."
 version: 0.0.1
-homepage: https://github.com/spreeloop/core-dart/spreeloop_core_static_analysis
+homepage: https://github.com/spreeloop/core-dart/tree/master/static_analysis
 publish_to: 'none'
 
 environment:

@@ -1,7 +1,7 @@
 name: spreeloop_core_database
 description: "Spreeloop database package."
 version: 0.0.1
-homepage: https://github.com/spreeloop/core-dart/tree/master/spreeloop_core_database
+homepage: https://github.com/spreeloop/core-dart/tree/master/database
 
 environment:
   sdk: '>=3.3.1 <4.0.0'
@@ -21,6 +21,9 @@ dependencies:
 
   # Package for logging debug and error messages.
   logging: ^1.0.1
+
+  # Package for cross plateform file library (XFile).
+  cross_file: ^0.3.2
 
   # Library to display and cache network images.
   cached_network_image: ^3.3.1
