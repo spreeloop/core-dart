@@ -1,0 +1,3 @@
+# authentication
+
+Spreeloop authentication package.
