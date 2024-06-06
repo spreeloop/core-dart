@@ -1,4 +1,4 @@
-# GeoCurrencies
+# spreeloop_crash_reporting
 [![pub package](https://img.shields.io/pub/v/spreeloop_crash_reporting.svg)](https://pub.dev/packages/spreeloop_crash_reporting)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![stars](https://img.shields.io/github/stars/spreeloop/core-dart)
