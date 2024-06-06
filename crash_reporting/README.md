@@ -22,7 +22,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  spreeloop_crash_reporting: ^0.0.1
+  spreeloop_crash_reporting: ^0.0.2
 ```
 ## Usage
 
