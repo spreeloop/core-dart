@@ -1,0 +1,24 @@
+name: spreeloop_crash_reporting
+description: Spreeloop crash reporting package.
+version: 0.0.1
+homepage: https://github.com/spreeloop/core-dart/tree/master/crash_reporting
+topics:
+ - firebase
+ - crashlytics.
+ - report
+ - error
+
+environment:
+  sdk: ^3.1.5
+  flutter: ^2.10.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Flutter plugin for Firebase Crashlytics.
+  firebase_crashlytics: ^3.4.19
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
