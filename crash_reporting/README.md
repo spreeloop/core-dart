@@ -1,4 +1,4 @@
-# GeoCurrencies
+# spreeloop_crash_reporting
 [![pub package](https://img.shields.io/pub/v/spreeloop_crash_reporting.svg)](https://pub.dev/packages/spreeloop_crash_reporting)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![stars](https://img.shields.io/github/stars/spreeloop/core-dart)
@@ -22,7 +22,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  spreeloop_crash_reporting: ^0.0.1
+  spreeloop_crash_reporting: ^0.0.2
 ```
 ## Usage
 
@@ -57,7 +57,7 @@ CrashReporting.init(service: CrashReporterType.fake);
 
 Output: /// bool: true
 
-### checkForUnsentReports
+### crash
 ```dart
    CrashReporting().crash()
 ```
@@ -75,7 +75,7 @@ Output: /// bool: true
 
 Output: /// String: Logs a message that's included in the next fatal or non-fatal report.
 
-### log
+### recordError
 ```dart
    CrashReporting().recordError()
 ```
@@ -102,7 +102,7 @@ ErrorRecordParam, the type of argument to provide in a [ErrorRecordParam] method
    CrashReporting().setCustomKey('key', {})
 ```
 
-### setCustomKey
+### setUserIdentifier
 ```dart
    CrashReporting().setUserIdentifier('identifier')
 ```
