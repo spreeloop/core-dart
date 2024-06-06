@@ -57,7 +57,7 @@ CrashReporting.init(service: CrashReporterType.fake);
 
 Output: /// bool: true
 
-### checkForUnsentReports
+### crash
 ```dart
    CrashReporting().crash()
 ```
@@ -75,7 +75,7 @@ Output: /// bool: true
 
 Output: /// String: Logs a message that's included in the next fatal or non-fatal report.
 
-### log
+### recordError
 ```dart
    CrashReporting().recordError()
 ```
@@ -102,7 +102,7 @@ ErrorRecordParam, the type of argument to provide in a [ErrorRecordParam] method
    CrashReporting().setCustomKey('key', {})
 ```
 
-### setCustomKey
+### setUserIdentifier
 ```dart
    CrashReporting().setUserIdentifier('identifier')
 ```
