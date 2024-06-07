@@ -1,0 +1,22 @@
+name: spreeloop_analytics
+description: Spreeloop analytics is an app measurement solution, that provides insight on app usage and user engagement.
+version: 0.0.1
+homepage: https://github.com/spreeloop/core-dart/tree/master/analytics
+issue_tracker: https://github.com/spreeloop/core-dart/issues
+topics:
+ - analytics
+ - stats
+
+environment:
+  sdk: ^3.1.5
+  flutter: ">=2.10.4"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Flutter plugin for Google Analytics for Firebase.
+  firebase_analytics: ^10.8.10
+
+  # Package for logging debug and error messages.
+  logging: ^1.0.1
