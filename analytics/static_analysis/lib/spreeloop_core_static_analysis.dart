@@ -1,0 +1,1 @@
+library spreeloop_core_static_analysis;

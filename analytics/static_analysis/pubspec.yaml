@@ -1,0 +1,16 @@
+name: spreeloop_core_static_analysis
+description: "Spreeloop static analysis package."
+version: 0.0.1
+homepage: https://github.com/spreeloop/core-dart/tree/master/static_analysis
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.3.1 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  # Static analysis tool that also collects various useful metrics.
+  dart_code_linter:
+    git:
+      url: https://github.com/spreeloop/dart-code-linter.git
+      ref: f687f9984d4cff5786aa0173465ba772d8384bea
