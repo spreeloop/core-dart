@@ -41,6 +41,10 @@ abstract class Database {
   /// storage.
   Future<ImageProvider?> getImage(String imageRef);
 
+  /// Returns an download link from the database using the path file reference from
+  /// storage.
+  Future<String?> getDonwloadLink(String url);
+
   /// Sets a file to the database using the record path from
   /// storage and file.
   Future<bool> setFile(Uint8List fileData, String recordPath);
