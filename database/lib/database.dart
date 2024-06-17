@@ -41,9 +41,9 @@ abstract class Database {
   /// storage.
   Future<ImageProvider?> getImage(String imageRef);
 
-  /// Returns an download link from the database using the path file reference from
+  /// Returns an download url from the database using the path file reference from
   /// storage.
-  Future<String?> getDonwloadLink(String url);
+  Future<String?> getDownloadURL(String url);
 
   /// Sets a file to the database using the record path from
   /// storage and file.
