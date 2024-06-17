@@ -530,6 +530,20 @@ class DatabaseFirestoreImplementation implements Database {
     }
   }
 
+  @override
+  Future<String?> getDonwloadLink(String url) async {
+    if (url.isEmpty) {
+      return null;
+    }
+    try {
+      return await FirebaseStorage.instance.ref().child(url).getDownloadURL();
+    } on FirebaseException catch (e) {
+      _log.severe(e.toString(), e, e.stackTrace);
+
+      return null;
+    }
+  }
+
   /// Constructs a new [DatabaseFirestoreImplementation].
   DatabaseFirestoreImplementation(CacheManager? cacheManager)
       : _cacheManager = cacheManager ?? FirebaseCacheManager();
