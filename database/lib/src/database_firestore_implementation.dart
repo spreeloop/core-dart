@@ -53,18 +53,13 @@ class DatabaseFirestoreImplementation implements Database {
 
   @override
   Future<ImageProvider?> getImage(String imageRef) async {
-    if (imageRef.isEmpty) {
-      return null;
-    }
-
     try {
       // Caching not supported on Web.
-      final imageUrl = kIsWeb
-          ? await FirebaseStorage.instance
-              .ref()
-              .child(imageRef)
-              .getDownloadURL()
-          : imageRef;
+      final imageUrl = kIsWeb ? await getDownloadURL(imageRef) : imageRef;
+
+      if (imageUrl == null) {
+        return null;
+      }
 
       return CachedNetworkImageProvider(
         imageUrl,
@@ -536,8 +531,7 @@ class DatabaseFirestoreImplementation implements Database {
       return null;
     }
     try {
-      return
-          await FirebaseStorage.instance.ref().child(url).getDownloadURL();
+      return await FirebaseStorage.instance.ref().child(url).getDownloadURL();
     } on FirebaseException catch (e) {
       _log.severe(e.toString(), e, e.stackTrace);
 
