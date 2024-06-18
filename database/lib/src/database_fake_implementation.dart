@@ -2483,7 +2483,7 @@ class DatabaseFakeImplementation implements Database {
   }
 
   @override
-  Future<String?> getDonwloadLink(String url) async {
+  Future<String?> getDownloadURL(String url) async {
     return _placeholderImagePath;
   }
 
