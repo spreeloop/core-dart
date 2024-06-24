@@ -1,4 +1,4 @@
-library spreeloop_core_database;
+library spreeloop_database;
 
 export 'database.dart';
 export 'src/database_path_utils.dart';
