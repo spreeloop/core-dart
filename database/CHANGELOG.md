@@ -8,3 +8,6 @@
 
 ## [0.0.3] - 18-06-2024
 * Add function getDownloadLink to getDownloadUrl.
+
+## [0.0.4] - 25-12-2024
+* Add arrayContains in filter option.

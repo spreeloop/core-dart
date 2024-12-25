@@ -42,5 +42,9 @@ enum DocumentFieldCondition {
 
   /// Condition that will be used to check if
   /// the field matches any of the comparison values.
-  whereIn
+  whereIn,
+
+  /// Condition that will be used to check if
+  /// the array contains the specified value.
+  arrayContains
 }

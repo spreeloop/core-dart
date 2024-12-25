@@ -2628,6 +2628,13 @@ class DatabaseFakeImplementation implements Database {
             }
           }
           break;
+        case DocumentFieldCondition.arrayContains:
+          {
+            if (map[docQuery.key].contains(docQuery.value)) {
+              counter++;
+            }
+          }
+          break;
         default:
           _log.warning(
             'Document field condition failed (removeRecordByValue).',
@@ -2725,7 +2732,9 @@ class DatabaseFakeImplementation implements Database {
                 map[docQuery.key] == docQuery.value) ||
             (condition == DocumentFieldCondition.whereIn &&
                 !(docQuery.value as List<dynamic>)
-                    .contains(map[docQuery.key]))) {
+                    .contains(map[docQuery.key])) ||
+            (condition == DocumentFieldCondition.arrayContains &&
+                !(map[docQuery.key]).contains(docQuery.value))) {
           return;
         }
       }
@@ -2868,7 +2877,9 @@ class DatabaseFakeImplementation implements Database {
                 value[docQuery.key] == docQuery.value) ||
             (condition == DocumentFieldCondition.whereIn &&
                 !(docQuery.value as List<dynamic>)
-                    .contains(value[docQuery.key]))) {
+                    .contains(value[docQuery.key])) ||
+            (condition == DocumentFieldCondition.arrayContains &&
+                !(value[docQuery.key]).contains(docQuery.value))) {
           return;
         }
       }
