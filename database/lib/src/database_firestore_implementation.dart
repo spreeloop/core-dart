@@ -177,6 +177,11 @@ class DatabaseFirestoreImplementation implements Database {
             query = query.where(docQuery.key, whereIn: docQuery.value);
           }
           break;
+        case DocumentFieldCondition.arrayContains:
+          {
+            query = query.where(docQuery.key, arrayContains: docQuery.value);
+          }
+          break;
         default:
           _log.severe(
             'Unknown Document field condition ${docQuery.condition}',
@@ -225,6 +230,9 @@ class DatabaseFirestoreImplementation implements Database {
             break;
           case DocumentFieldCondition.whereIn:
             query = query.where(docQuery.key, whereIn: docQuery.value);
+            break;
+          case DocumentFieldCondition.arrayContains:
+            query = query.where(docQuery.key, arrayContains: docQuery.value);
             break;
         }
       }
@@ -295,6 +303,9 @@ class DatabaseFirestoreImplementation implements Database {
             break;
           case DocumentFieldCondition.whereIn:
             query = query.where(docQuery.key, whereIn: docQuery.value);
+            break;
+          case DocumentFieldCondition.arrayContains:
+            query = query.where(docQuery.key, arrayContains: docQuery.value);
             break;
         }
       }
@@ -413,6 +424,9 @@ class DatabaseFirestoreImplementation implements Database {
           case DocumentFieldCondition.whereIn:
             query = query.where(docQuery.key, whereIn: docQuery.value);
             break;
+          case DocumentFieldCondition.arrayContains:
+            query = query.where(docQuery.key, arrayContains: docQuery.value);
+            break;
         }
       }
       if (limit != null && limit > 0) {
@@ -479,6 +493,9 @@ class DatabaseFirestoreImplementation implements Database {
             break;
           case DocumentFieldCondition.whereIn:
             query = query.where(docQuery.key, whereIn: docQuery.value);
+            break;
+          case DocumentFieldCondition.arrayContains:
+            query = query.where(docQuery.key, arrayContains: docQuery.value);
             break;
         }
       }
