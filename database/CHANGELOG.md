@@ -11,3 +11,6 @@
 
 ## [0.0.4] - 25-12-2024
 * Add arrayContains in filter option.
+
+## [0.0.5] - 26-12-2024
+* Fix some conditions (isGreaterThan, isGreaterThanOrEqualTo, isLessThan, isLessThanOrEqualTo).
