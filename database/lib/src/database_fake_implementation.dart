@@ -2588,28 +2588,28 @@ class DatabaseFakeImplementation implements Database {
           break;
         case DocumentFieldCondition.isGreaterThan:
           {
-            if (map[docQuery.key] > docQuery.value) {
+            if (map[docQuery.key].compareTo(docQuery.value) > 0) {
               counter++;
             }
           }
           break;
         case DocumentFieldCondition.isGreaterThanOrEqualTo:
           {
-            if (map[docQuery.key] >= docQuery.value) {
+            if (map[docQuery.key].compareTo(docQuery.value) >= 0) {
               counter++;
             }
           }
           break;
         case DocumentFieldCondition.isLessThan:
           {
-            if (map[docQuery.key] < docQuery.value) {
+            if (map[docQuery.key].compareTo(docQuery.value) < 0) {
               counter++;
             }
           }
           break;
         case DocumentFieldCondition.isLessThanOrEqualTo:
           {
-            if (map[docQuery.key] <= docQuery.value) {
+            if (map[docQuery.key].compareTo(docQuery.value) <= 0) {
               counter++;
             }
           }
@@ -2721,13 +2721,13 @@ class DatabaseFakeImplementation implements Database {
         if ((condition == DocumentFieldCondition.isEqualTo &&
                 map[docQuery.key] != docQuery.value) ||
             (condition == DocumentFieldCondition.isGreaterThan &&
-                map[docQuery.key] <= docQuery.value) ||
+                map[docQuery.key].compareTo(docQuery.value) <= 0) ||
             (condition == DocumentFieldCondition.isGreaterThanOrEqualTo &&
-                map[docQuery.key] < docQuery.value) ||
+                map[docQuery.key].compareTo(docQuery.value) < 0) ||
             (condition == DocumentFieldCondition.isLessThan &&
-                map[docQuery.key] >= docQuery.value) ||
+                map[docQuery.key].compareTo(docQuery.value) >= 0) ||
             (condition == DocumentFieldCondition.isLessThanOrEqualTo &&
-                map[docQuery.key] > docQuery.value) ||
+                map[docQuery.key].compareTo(docQuery.value) > 0) ||
             (condition == DocumentFieldCondition.isNotEqualTo &&
                 map[docQuery.key] == docQuery.value) ||
             (condition == DocumentFieldCondition.whereIn &&
@@ -2866,13 +2866,13 @@ class DatabaseFakeImplementation implements Database {
         if ((condition == DocumentFieldCondition.isEqualTo &&
                 value[docQuery.key] != docQuery.value) ||
             (condition == DocumentFieldCondition.isGreaterThan &&
-                value[docQuery.key] <= docQuery.value) ||
+                value[docQuery.key].compareTo(docQuery.value) <= 0) ||
             (condition == DocumentFieldCondition.isGreaterThanOrEqualTo &&
-                value[docQuery.key] < docQuery.value) ||
+                value[docQuery.key].compareTo(docQuery.value) < 0) ||
             (condition == DocumentFieldCondition.isLessThan &&
-                value[docQuery.key] >= docQuery.value) ||
+                value[docQuery.key].compareTo(docQuery.value) >= 0) ||
             (condition == DocumentFieldCondition.isLessThanOrEqualTo &&
-                value[docQuery.key] > docQuery.value) ||
+                value[docQuery.key].compareTo(docQuery.value) > 0) ||
             (condition == DocumentFieldCondition.isNotEqualTo &&
                 value[docQuery.key] == docQuery.value) ||
             (condition == DocumentFieldCondition.whereIn &&
