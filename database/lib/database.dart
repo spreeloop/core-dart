@@ -12,27 +12,11 @@ export 'src/database_document_filter.dart';
 export 'src/database_document_order_by.dart';
 export 'src/database_path_utils.dart';
 
-/// Supported database backends.
-enum DatabaseType {
-  /// Database based on Firebase Firestore & Storage.
-  firestore,
-
-  /// Fake database implementation for testing.
-  fake,
-}
-
 /// Service that provides Database implementations to apps.
 abstract class Database {
-  /// Builds an [Database] implementation for the specified [DatabaseType].
-  factory Database(DatabaseType type, {CacheManager? cacheManager}) {
-    switch (type) {
-      case DatabaseType.firestore:
-        return DatabaseFirestoreImplementation(cacheManager);
-      default:
-        return DatabaseFakeImplementation.legacy();
-    }
+  factory Database.firestore({CacheManager? cacheManager}) {
+    return DatabaseFirestoreImplementation(cacheManager);
   }
-
   factory Database.fake(Map<dynamic, Map<dynamic, dynamic>> database) {
     return DatabaseFakeImplementation(database);
   }

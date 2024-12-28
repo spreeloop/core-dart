@@ -14,3 +14,6 @@
 
 ## [0.0.5] - 26-12-2024
 * Fix some conditions (isGreaterThan, isGreaterThanOrEqualTo, isLessThan, isLessThanOrEqualTo).
+
+## [0.0.6] - 28-12-2024
+* Update factory for firestore implementation.
