@@ -1,15 +1,15 @@
 name: spreeloop_auth
 description: Spreeloop authentication package.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/spreeloop/core-dart/tree/master/authentification
 publish_to: none
 topics:
- - firebase
- - firestore
- - auth
+  - firebase
+  - firestore
+  - auth
 
 environment:
-  sdk: '>=3.3.1 <4.0.0'
+  sdk: ">=3.3.1 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -18,7 +18,7 @@ dependencies:
 
   # Flutter plugin for Firebase Auth, enabling Android and iOS authentication
   # using passwords, phone numbers and identity providers like Google, Facebook and Twitter.
-  firebase_auth: ^4.17.9
+  firebase_auth: ^5.5.1
 
   # Package for logging debug and error messages.
   logging: ^1.0.1
