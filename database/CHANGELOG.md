@@ -25,3 +25,7 @@
 ## [0.0.7] - 19-03-2025
 
 - Update cloud_firestore and firebase_storage to last version.
+
+## [0.0.8] - 19-03-2025
+
+- Update cloud_firestore and firebase_storage to last version.

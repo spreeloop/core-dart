@@ -1,6 +1,6 @@
 name: spreeloop_crash_reporting
 description: Package that provides methods for reporting crash in application based on firebase crashlytics.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/spreeloop/core-dart/tree/master/crash_reporting
 issue_tracker: https://github.com/spreeloop/core-dart/issues
 topics:

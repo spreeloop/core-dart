@@ -1,6 +1,6 @@
 name: spreeloop_analytics
 description: Spreeloop analytics is an app measurement solution, that provides insight on app usage and user engagement.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/spreeloop/core-dart/tree/master/analytics
 issue_tracker: https://github.com/spreeloop/core-dart/issues
 topics:
