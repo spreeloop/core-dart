@@ -1,10 +1,10 @@
 name: spreeloop_database
 description: "Spreeloop database package."
-version: 0.0.6
+version: 0.0.8
 homepage: https://github.com/spreeloop/core-dart/tree/master/database
 
 environment:
-  sdk: '>=3.3.1 <4.0.0'
+  sdk: ">=3.3.1 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -13,11 +13,11 @@ dependencies:
 
   # Flutter plugin for Cloud Firestore, a cloud-hosted, noSQL database
   # with live synchronization and offline support on Android and iOS.
-  cloud_firestore: ^4.15.9
+  cloud_firestore: ^5.6.5
 
   # Flutter plugin for Firebase Cloud Storage, a powerful, simple,
   # and cost-effective object storage service for Android and iOS.
-  firebase_storage: ^11.6.10
+  firebase_storage: ^12.4.4
 
   # Package for logging debug and error messages.
   logging: ^1.0.1

@@ -1,3 +1,4 @@
+
 import 'package:flutter/foundation.dart';
 
 import '../spreeloop_crash_reporting.dart';

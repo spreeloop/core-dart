@@ -31,7 +31,7 @@ class AnalyticsFirebaseImplementation implements Analytics {
     await FirebaseAnalytics.instance
         .logEvent(
       name: eventTypeToFirebaseAnalyticsEvent[eventType]!,
-      parameters: parameters,
+      parameters: parameters?.cast<String, Object>(),
     )
         .catchError((error) {
       _log.severe('Argument error caught: $error', null, StackTrace.current);
@@ -156,7 +156,7 @@ class AnalyticsFirebaseImplementation implements Analytics {
     await FirebaseAnalytics.instance.logEvent(
       name: 'user_calls_partner',
       parameters: {
-        'partner_id': partnerId,
+        'partner_id': partnerId as Object,
       },
     ).catchError((error) {
       _log.severe('Argument error caught: $error', null, StackTrace.current);
@@ -198,7 +198,8 @@ class AnalyticsFirebaseImplementation implements Analytics {
       evenParameters['items'] = itemsEvent.join(',');
     }
     await FirebaseAnalytics.instance
-        .logEvent(name: 'purchase', parameters: evenParameters)
+        .logEvent(
+            name: 'purchase', parameters: evenParameters.cast<String, Object>())
         .catchError((error) {
       _log.severe('Argument error caught: $error', null, StackTrace.current);
     });
