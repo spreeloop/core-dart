@@ -129,57 +129,58 @@ class DatabaseFakeImplementation implements Database {
     int counter,
   ) {
     for (var docQuery in docQueries) {
+      final dynamic valueData = _getNestedValue(map, docQuery.key);
       switch (docQuery.condition) {
         case DocumentFieldCondition.isEqualTo:
-          if (map[docQuery.key] == docQuery.value) {
+          if (valueData == docQuery.value) {
             counter++;
           }
           break;
         case DocumentFieldCondition.isGreaterThan:
           {
-            if (map[docQuery.key].compareTo(docQuery.value) > 0) {
+            if (valueData.compareTo(docQuery.value) > 0) {
               counter++;
             }
           }
           break;
         case DocumentFieldCondition.isGreaterThanOrEqualTo:
           {
-            if (map[docQuery.key].compareTo(docQuery.value) >= 0) {
+            if (valueData.compareTo(docQuery.value) >= 0) {
               counter++;
             }
           }
           break;
         case DocumentFieldCondition.isLessThan:
           {
-            if (map[docQuery.key].compareTo(docQuery.value) < 0) {
+            if (valueData.compareTo(docQuery.value) < 0) {
               counter++;
             }
           }
           break;
         case DocumentFieldCondition.isLessThanOrEqualTo:
           {
-            if (map[docQuery.key].compareTo(docQuery.value) <= 0) {
+            if (valueData.compareTo(docQuery.value) <= 0) {
               counter++;
             }
           }
           break;
         case DocumentFieldCondition.isNotEqualTo:
           {
-            if (map[docQuery.key] != docQuery.value) {
+            if (valueData != docQuery.value) {
               counter++;
             }
           }
           break;
         case DocumentFieldCondition.whereIn:
           {
-            if ((docQuery.value as List<dynamic>).contains(map[docQuery.key])) {
+            if ((docQuery.value as List<dynamic>).contains(valueData)) {
               counter++;
             }
           }
           break;
         case DocumentFieldCondition.arrayContains:
           {
-            if (map[docQuery.key].contains(docQuery.value)) {
+            if (valueData.contains(docQuery.value)) {
               counter++;
             }
           }
@@ -267,23 +268,23 @@ class DatabaseFakeImplementation implements Database {
       final Map map = val;
       for (var docQuery in filters) {
         final DocumentFieldCondition condition = docQuery.condition;
+        final dynamic valueData = _getNestedValue(map, docQuery.key);
         if ((condition == DocumentFieldCondition.isEqualTo &&
-                map[docQuery.key] != docQuery.value) ||
+                valueData != docQuery.value) ||
             (condition == DocumentFieldCondition.isGreaterThan &&
-                map[docQuery.key].compareTo(docQuery.value) <= 0) ||
+                valueData.compareTo(docQuery.value) <= 0) ||
             (condition == DocumentFieldCondition.isGreaterThanOrEqualTo &&
-                map[docQuery.key].compareTo(docQuery.value) < 0) ||
+                valueData.compareTo(docQuery.value) < 0) ||
             (condition == DocumentFieldCondition.isLessThan &&
-                map[docQuery.key].compareTo(docQuery.value) >= 0) ||
+                valueData.compareTo(docQuery.value) >= 0) ||
             (condition == DocumentFieldCondition.isLessThanOrEqualTo &&
-                map[docQuery.key].compareTo(docQuery.value) > 0) ||
+                valueData.compareTo(docQuery.value) > 0) ||
             (condition == DocumentFieldCondition.isNotEqualTo &&
-                map[docQuery.key] == docQuery.value) ||
+                valueData == docQuery.value) ||
             (condition == DocumentFieldCondition.whereIn &&
-                !(docQuery.value as List<dynamic>)
-                    .contains(map[docQuery.key])) ||
+                !(docQuery.value as List<dynamic>).contains(valueData)) ||
             (condition == DocumentFieldCondition.arrayContains &&
-                !(map[docQuery.key]).contains(docQuery.value))) {
+                !(valueData).contains(docQuery.value))) {
           return;
         }
       }
@@ -372,6 +373,20 @@ class DatabaseFakeImplementation implements Database {
     }
   }
 
+  dynamic _getNestedValue(Map obj, String path) {
+    final keys = path.split('.');
+    dynamic current = obj;
+
+    for (final key in keys) {
+      if (current is Map && current.containsKey(key)) {
+        current = current[key];
+      } else {
+        return null;
+      }
+    }
+    return current;
+  }
+
   void _recursivelyFindCollection(
     Map<String, dynamic> currentMap,
     String parentPath,
@@ -412,23 +427,24 @@ class DatabaseFakeImplementation implements Database {
     void applyFilter(String key, Map value) {
       for (var docQuery in filters) {
         final DocumentFieldCondition condition = docQuery.condition;
+
+        final dynamic valueData = _getNestedValue(value, docQuery.key);
         if ((condition == DocumentFieldCondition.isEqualTo &&
-                value[docQuery.key] != docQuery.value) ||
+                valueData != docQuery.value) ||
             (condition == DocumentFieldCondition.isGreaterThan &&
-                value[docQuery.key].compareTo(docQuery.value) <= 0) ||
+                valueData.compareTo(docQuery.value) <= 0) ||
             (condition == DocumentFieldCondition.isGreaterThanOrEqualTo &&
-                value[docQuery.key].compareTo(docQuery.value) < 0) ||
+                valueData.compareTo(docQuery.value) < 0) ||
             (condition == DocumentFieldCondition.isLessThan &&
-                value[docQuery.key].compareTo(docQuery.value) >= 0) ||
+                valueData.compareTo(docQuery.value) >= 0) ||
             (condition == DocumentFieldCondition.isLessThanOrEqualTo &&
-                value[docQuery.key].compareTo(docQuery.value) > 0) ||
+                valueData.compareTo(docQuery.value) > 0) ||
             (condition == DocumentFieldCondition.isNotEqualTo &&
-                value[docQuery.key] == docQuery.value) ||
+                valueData == docQuery.value) ||
             (condition == DocumentFieldCondition.whereIn &&
-                !(docQuery.value as List<dynamic>)
-                    .contains(value[docQuery.key])) ||
+                !(docQuery.value as List<dynamic>).contains(valueData)) ||
             (condition == DocumentFieldCondition.arrayContains &&
-                !(value[docQuery.key]).contains(docQuery.value))) {
+                !(valueData).contains(docQuery.value))) {
           return;
         }
       }

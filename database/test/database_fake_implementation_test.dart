@@ -1144,7 +1144,7 @@ final Map<dynamic, Map<dynamic, dynamic>> testDatabase = {
         'socials': {
           'facebook': <String>['https://www.facebook.com/tchopetyamo'],
         },
-        'website': 'https://www.tchopetyamo.com/firstTime/',
+        'website': 'https://www.tchopetyamo.com/firstTime000/',
       },
       'cuisineType': <String>['Continental', 'Cameroonian', 'Italian'],
       'description': 'Beignets et Haricots.',
@@ -2441,6 +2441,7 @@ final Map<dynamic, Map<dynamic, dynamic>> testDatabase = {
 void main() {
   unawaited(_retrieveRecordTestGroup());
   unawaited(_setRecordTestGroup());
+  unawaited(_getCollection());
 }
 
 Future<void> _retrieveRecordTestGroup() async {
@@ -2670,7 +2671,7 @@ Future<void> _removeItemsOnCollectionWithCondition3() async {
 }
 
 Future<void> _testGetMultipleElementInSubCollection() async {
-  test('Get all ellements of a sub Collection', () async {
+  test('Get all elements of a sub Collection', () async {
     final dbInstance = Database.fake(testDatabase);
     final collectionItems =
         await dbInstance.getCollection('restaurants/restaurants_1/menuItems');
@@ -2699,7 +2700,7 @@ Future<void> _testGetMultipleElementInSubCollection() async {
     },
   );
 
-  test('Get all ellements of a sub Collection with limit', () async {
+  test('Get all elements of a sub Collection with limit', () async {
     final dbInstance = Database.fake(testDatabase);
     final collectionItems = await dbInstance
         .getCollection('restaurants/restaurants_1/menuItems', limit: 1);
@@ -2987,6 +2988,25 @@ Future<void> _setRecordTestGroup() async {
           doc?.keys.every((element) => document[element] == doc[element]);
       expect(isEqual, false);
       expect(doc?.length, document.length + 1);
+    });
+  });
+}
+
+Future<void> _getCollection() async {
+  final dbInstance = Database.fake(testDatabase);
+  group('getCollection', () {
+    test('Get collection with nested value', () async {
+      final retrievedList = await dbInstance.getCollection(
+        'restaurants',
+        filters: [
+          DocumentQuery(
+            'contacts.website',
+            'https://www.tchopetyamo.com/firstTime000/',
+            DocumentFieldCondition.isEqualTo,
+          ),
+        ],
+      );
+      expect(retrievedList?.length, 1);
     });
   });
 }
