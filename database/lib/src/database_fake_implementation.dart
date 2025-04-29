@@ -373,13 +373,20 @@ class DatabaseFakeImplementation implements Database {
     }
   }
 
-  dynamic _getNestedValue(Map obj, String path) {
+  dynamic _getNestedValue(dynamic obj, String path) {
     final keys = path.split('.');
     dynamic current = obj;
 
-    for (final key in keys) {
+    for (int i = 0; i < keys.length; i++) {
+      final key = keys[i];
+      final isLastKey = (i == keys.length - 1);
+
+      if (current == null) return null;
+
       if (current is Map && current.containsKey(key)) {
         current = current[key];
+      } else if (isLastKey && current is List) {
+        return current;
       } else {
         return null;
       }

@@ -2396,7 +2396,7 @@ final Map<dynamic, Map<dynamic, dynamic>> testDatabase = {
       'packagingState': 2,
       'courierPath': 'couriers/users_2',
       'review': 'The packaging quality is beautiful,'
-          ' I recommend you to make an oder more often.'
+          ' I recommend you to make an order more often.'
           ' What do you think about it? let order now',
       'createdAt': '2022-01-21T11:30:29.897Z',
       'updatedAt': '2022-01-21T12:30:29.897Z',
@@ -2410,7 +2410,7 @@ final Map<dynamic, Map<dynamic, dynamic>> testDatabase = {
       'packagingState': 3,
       'courierPath': 'couriers/users_1',
       'review': 'The packaging quality is beautiful,'
-          ' I recommend you to make an oder more often.'
+          ' I recommend you to make an order more often.'
           ' What do you think about it? let order now',
       'createdAt': '2022-01-21T12:30:29.897Z',
       'updatedAt': '2022-01-21T12:30:29.897Z',

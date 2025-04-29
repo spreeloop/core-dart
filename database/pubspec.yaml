@@ -1,6 +1,6 @@
 name: spreeloop_database
 description: "Spreeloop database package."
-version: 0.0.9
+version: 0.0.10
 homepage: https://github.com/spreeloop/core-dart/tree/master/database
 
 environment:

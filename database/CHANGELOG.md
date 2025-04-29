@@ -32,3 +32,6 @@
 
 ## [0.0.9] - 16-04-2025
 - Get nested value in key.
+
+## [0.0.10] - 29-04-2025
+- Fix get nested value in key in order to retrieve arrays.
