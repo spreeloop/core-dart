@@ -130,6 +130,9 @@ class DatabaseFakeImplementation implements Database {
   ) {
     for (var docQuery in docQueries) {
       final dynamic valueData = _getNestedValue(map, docQuery.key);
+      if (valueData == null) {
+        continue;
+      }
       switch (docQuery.condition) {
         case DocumentFieldCondition.isEqualTo:
           if (valueData == docQuery.value) {
@@ -269,6 +272,9 @@ class DatabaseFakeImplementation implements Database {
       for (var docQuery in filters) {
         final DocumentFieldCondition condition = docQuery.condition;
         final dynamic valueData = _getNestedValue(map, docQuery.key);
+        if (valueData == null) {
+          return;
+        }
         if ((condition == DocumentFieldCondition.isEqualTo &&
                 valueData != docQuery.value) ||
             (condition == DocumentFieldCondition.isGreaterThan &&
@@ -381,7 +387,9 @@ class DatabaseFakeImplementation implements Database {
       final key = keys[i];
       final isLastKey = (i == keys.length - 1);
 
-      if (current == null) return null;
+      if (current == null) {
+        return null;
+      }
 
       if (current is Map && current.containsKey(key)) {
         current = current[key];
@@ -434,8 +442,10 @@ class DatabaseFakeImplementation implements Database {
     void applyFilter(String key, Map value) {
       for (var docQuery in filters) {
         final DocumentFieldCondition condition = docQuery.condition;
-
         final dynamic valueData = _getNestedValue(value, docQuery.key);
+        if (valueData == null) {
+          return;
+        }
         if ((condition == DocumentFieldCondition.isEqualTo &&
                 valueData != docQuery.value) ||
             (condition == DocumentFieldCondition.isGreaterThan &&
