@@ -41,3 +41,7 @@
 ## [0.0.11] - 30-04-2025
 
 - Fix get nested value in key in order to manage nullable value.
+
+## [0.0.12] - 20-05-2025
+
+- Fix add the deleFile function to remove file from storage.
