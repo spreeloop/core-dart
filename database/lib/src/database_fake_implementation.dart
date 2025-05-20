@@ -367,6 +367,13 @@ class DatabaseFakeImplementation implements Database {
     return true;
   }
 
+  @override
+  Future<bool> deleteFile(String recordPath) async {
+    _testStorage.remove(recordPath);
+
+    return true;
+  }
+
   dynamic _deepmerge({required dynamic target, required dynamic source}) {
     if (target is Map && source is Map) {
       final result = <String, dynamic>{...source};

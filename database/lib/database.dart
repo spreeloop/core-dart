@@ -33,6 +33,10 @@ abstract class Database {
   /// storage and file.
   Future<bool> setFile(Uint8List fileData, String recordPath);
 
+  /// Deletes a file from the database using the record path from storage.
+  /// Returns true if the file was successfully deleted, false otherwise.
+  Future<bool> deleteFile(String recordPath);
+
   /// Creates a record as map for database inputs and returns the generated
   /// document id.
   /// * [collectionPath] The path to the collection.

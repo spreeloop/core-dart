@@ -389,6 +389,20 @@ class DatabaseFirestoreImplementation implements Database {
   }
 
   @override
+  Future<bool> deleteFile(String recordPath) async {
+    final FirebaseStorage referenceStorage = FirebaseStorage.instance;
+    try {
+      await referenceStorage.ref(recordPath).delete();
+
+      return true;
+    } on FirebaseException catch (e) {
+      _log.warning(e.toString());
+
+      return false;
+    }
+  }
+
+  @override
   Future<Map<String, Map>?> getCollectionGroup(
     String collectionID, {
     List<DocumentQuery> filters = const [],
