@@ -188,11 +188,6 @@ class DatabaseFakeImplementation implements Database {
             }
           }
           break;
-        default:
-          _log.warning(
-            'Document field condition failed (removeRecordByValue).',
-          );
-          break;
       }
     }
 

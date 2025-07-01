@@ -182,13 +182,6 @@ class DatabaseFirestoreImplementation implements Database {
             query = query.where(docQuery.key, arrayContains: docQuery.value);
           }
           break;
-        default:
-          _log.severe(
-            'Unknown Document field condition ${docQuery.condition}',
-            null,
-            StackTrace.current,
-          );
-          break;
       }
     }
 
@@ -248,6 +241,14 @@ class DatabaseFirestoreImplementation implements Database {
         }
         if (orderBy.endAt != null) {
           query = query.endAt([orderBy.endAt]);
+        }
+        final startAtDocument = orderBy.startAtDocument;
+        final startAfterDocument = orderBy.startAfterDocument;
+        if (startAtDocument != null) {
+          query = query.startAtDocument(startAtDocument);
+        }
+        if (startAfterDocument != null) {
+          query = query.startAfterDocument(startAfterDocument);
         }
       }
 
@@ -320,6 +321,14 @@ class DatabaseFirestoreImplementation implements Database {
         }
         if (orderBy.endAt != null) {
           query = query.endAt([orderBy.endAt]);
+        }
+        final startAtDocument = orderBy.startAtDocument;
+        final startAfterDocument = orderBy.startAfterDocument;
+        if (startAtDocument != null) {
+          query = query.startAtDocument(startAtDocument);
+        }
+        if (startAfterDocument != null) {
+          query = query.startAfterDocument(startAfterDocument);
         }
       }
       final Stream<QuerySnapshot> result = query.snapshots();
@@ -454,6 +463,14 @@ class DatabaseFirestoreImplementation implements Database {
         if (orderBy.endAt != null) {
           query = query.endAt([orderBy.endAt]);
         }
+        final startAtDocument = orderBy.startAtDocument;
+        final startAfterDocument = orderBy.startAfterDocument;
+        if (startAtDocument != null) {
+          query = query.startAtDocument(startAtDocument);
+        }
+        if (startAfterDocument != null) {
+          query = query.startAfterDocument(startAfterDocument);
+        }
       }
       final QuerySnapshot result = await query.get();
       final Map<String, Map<dynamic, dynamic>> list =
@@ -523,6 +540,14 @@ class DatabaseFirestoreImplementation implements Database {
         }
         if (orderBy.endAt != null) {
           query = query.endAt([orderBy.endAt]);
+        }
+        final startAtDocument = orderBy.startAtDocument;
+        final startAfterDocument = orderBy.startAfterDocument;
+        if (startAtDocument != null) {
+          query = query.startAtDocument(startAtDocument);
+        }
+        if (startAfterDocument != null) {
+          query = query.startAfterDocument(startAfterDocument);
         }
       }
       final Stream<QuerySnapshot> result = query.snapshots();
