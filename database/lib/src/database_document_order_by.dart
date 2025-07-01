@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 /// A collection result ordering attribute.
 class DocumentOrderBy<T> {
   /// The field name.
@@ -12,11 +14,19 @@ class DocumentOrderBy<T> {
   /// The ending value in which the query will start.
   T? endAt;
 
+  /// The document snapshot in which the query will start.
+  DocumentSnapshot<Object?>? startAtDocument;
+
+  /// The document snapshot in which the query will start.
+  DocumentSnapshot<Object?>? startAfterDocument;
+
   /// Constructs a new [DocumentOrderBy].
   DocumentOrderBy(
     this.field, {
     this.descending = false,
     this.startAt,
     this.endAt,
+    this.startAtDocument,
+    this.startAfterDocument,
   });
 }

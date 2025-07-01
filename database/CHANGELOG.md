@@ -45,3 +45,7 @@
 ## [0.0.12] - 20-05-2025
 
 - Fix add the deleFile function to remove file from storage.
+
+## [0.0.13] - 01-07-2025
+
+- Adds the pagination functionality startAtDocument and startAfterDocument.
