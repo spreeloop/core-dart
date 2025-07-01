@@ -250,19 +250,11 @@ class DatabaseFakeImplementation implements Database {
     final Map<dynamic, dynamic>? col =
         originalCol == null ? null : jsonDecode(jsonEncode(originalCol));
 
-    final SplayTreeMap<String, Map<dynamic, dynamic>> mapOfDocuments =
-        SplayTreeMap((k1, k2) {
-      if (orderBy == null) {
-        return k1.compareTo(k2);
-      }
+    if (col == null) return null;
 
-      final orderFlip = orderBy.descending ? -1 : 1;
-
-      return col?[k1][orderBy.field]?.compareTo(col[k2]?[orderBy.field]) *
-          orderFlip;
-    });
-
-    col?.forEach((k, val) {
+    // Filter documents
+    final Map<String, Map<dynamic, dynamic>> filteredDocs = {};
+    col.forEach((k, val) {
       final Map map = val;
       for (var docQuery in filters) {
         final DocumentFieldCondition condition = docQuery.condition;
@@ -289,18 +281,57 @@ class DatabaseFakeImplementation implements Database {
           return;
         }
       }
-      if (limit != null && limit >= 0) {
-        if (mapOfDocuments.length < limit) {
-          mapOfDocuments[k] = val;
-        } else {
-          return;
-        }
-      } else {
-        mapOfDocuments[k] = val;
-      }
+      filteredDocs[k] = val;
     });
 
-    return mapOfDocuments;
+    // Sort keys according to orderBy if provided
+    List<String> sortedKeys = filteredDocs.keys.toList();
+    if (orderBy != null) {
+      final orderFlip = orderBy.descending ? -1 : 1;
+      sortedKeys.sort((k1, k2) {
+        final fieldValue1 = filteredDocs[k1]?[orderBy.field];
+        final fieldValue2 = filteredDocs[k2]?[orderBy.field];
+        if (fieldValue1 == fieldValue2) {
+          return 0;
+        }
+        if (fieldValue1 == null) {
+          return -1 * orderFlip;
+        }
+        if (fieldValue2 == null) {
+          return 1 * orderFlip;
+        }
+        return fieldValue1.compareTo(fieldValue2) * orderFlip;
+      });
+
+      final startAt = orderBy.startAtDocumentPath;
+      final startAfter = orderBy.startAfterDocumentPath;
+
+      int startIndex = 0;
+      if (startAt != null) {
+        startIndex = sortedKeys.indexOf(startAt);
+        if (startIndex == -1) startIndex = 0;
+      } else if (startAfter != null) {
+        startIndex = sortedKeys.indexOf(startAfter) + 1;
+        if (startIndex == 0) startIndex = 0;
+      }
+
+      if (startIndex > 0) {
+        sortedKeys = sortedKeys.sublist(startIndex);
+      }
+    }
+
+    if (limit != null && limit > 0 && sortedKeys.length > limit) {
+      sortedKeys = sortedKeys.sublist(0, limit);
+    }
+
+    final result = SplayTreeMap<String, Map<dynamic, dynamic>>((a, b) {
+      return sortedKeys.indexOf(a).compareTo(sortedKeys.indexOf(b));
+    });
+    for (final k in sortedKeys) {
+      result[k] = filteredDocs[k]!;
+    }
+
+    return result;
   }
 
   @override
@@ -467,15 +498,7 @@ class DatabaseFakeImplementation implements Database {
           return;
         }
       }
-      if (limit != null && limit > 0) {
-        if (originalDocs.length < limit) {
-          originalDocs[key] = value;
-        } else {
-          return;
-        }
-      } else {
-        originalDocs[key] = value;
-      }
+      originalDocs[key] = value;
     }
 
     _recursivelyFindCollection(
@@ -491,26 +514,54 @@ class DatabaseFakeImplementation implements Database {
       jsonDecode(jsonEncode(originalDocs)),
     );
 
-    return SplayTreeMap.from(docs, (k1, k2) {
-      if (orderBy == null) {
-        return k1.compareTo(k2);
-      }
+    // Sort keys according to orderBy if provided
+    List<String> sortedKeys = docs.keys.toList();
+    if (orderBy != null) {
       final orderFlip = orderBy.descending ? -1 : 1;
+      sortedKeys.sort((k1, k2) {
+        final fieldValue1 = docs[k1]?[orderBy.field];
+        final fieldValue2 = docs[k2]?[orderBy.field];
+        if (fieldValue1 == fieldValue2) {
+          return 0;
+        }
+        if (fieldValue1 == null) {
+          return -1 * orderFlip;
+        }
+        if (fieldValue2 == null) {
+          return 1 * orderFlip;
+        }
+        return fieldValue1.compareTo(fieldValue2) * orderFlip;
+      });
 
-      final fieldValue1 = docs[k1]?[orderBy.field];
-      final fieldValue2 = docs[k2]?[orderBy.field];
-      if (fieldValue1 == fieldValue2) {
-        return 0;
-      }
-      if (fieldValue1 == null) {
-        return -1 * orderFlip;
-      }
-      if (fieldValue2 == null) {
-        return 1 * orderFlip;
+      final startAt = orderBy.startAtDocumentPath;
+      final startAfter = orderBy.startAfterDocumentPath;
+
+      int startIndex = 0;
+      if (startAt != null) {
+        startIndex = sortedKeys.indexOf(startAt);
+        if (startIndex == -1) startIndex = 0;
+      } else if (startAfter != null) {
+        startIndex = sortedKeys.indexOf(startAfter) + 1;
+        if (startIndex == 0) startIndex = 0;
       }
 
-      return fieldValue1.compareTo(fieldValue2) * orderFlip;
+      if (startIndex > 0) {
+        sortedKeys = sortedKeys.sublist(startIndex);
+      }
+    }
+
+    if (limit != null && limit > 0 && sortedKeys.length > limit) {
+      sortedKeys = sortedKeys.sublist(0, limit);
+    }
+
+    final result = SplayTreeMap<String, Map<dynamic, dynamic>>((a, b) {
+      return sortedKeys.indexOf(a).compareTo(sortedKeys.indexOf(b));
     });
+    for (final k in sortedKeys) {
+      result[k] = docs[k]!;
+    }
+
+    return result;
   }
 
   @override
