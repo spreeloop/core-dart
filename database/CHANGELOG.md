@@ -46,6 +46,10 @@
 
 - Fix add the deleFile function to remove file from storage.
 
-## [0.0.13] - 01-07-2025
+## [0.0.14] - 01-07-2025
 
 - Adds the pagination functionality startAtDocument and startAfterDocument.
+
+## [0.0.15] - 10-07-2025
+
+- Fix the fake database filter.
