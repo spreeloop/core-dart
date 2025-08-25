@@ -200,32 +200,60 @@ class DatabaseFirestoreImplementation implements Database {
       for (DocumentQuery docQuery in filters) {
         switch (docQuery.condition) {
           case DocumentFieldCondition.isEqualTo:
-            query = query.where(docQuery.key, isEqualTo: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.isGreaterThan:
-            query = query.where(docQuery.key, isGreaterThan: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isGreaterThan: docQuery.value);
             break;
           case DocumentFieldCondition.isGreaterThanOrEqualTo:
             query = query.where(
-              docQuery.key,
-              isGreaterThanOrEqualTo: docQuery.value,
-            );
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isGreaterThanOrEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.isLessThan:
-            query = query.where(docQuery.key, isLessThan: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isLessThan: docQuery.value);
             break;
           case DocumentFieldCondition.isLessThanOrEqualTo:
-            query =
-                query.where(docQuery.key, isLessThanOrEqualTo: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isLessThanOrEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.isNotEqualTo:
-            query = query.where(docQuery.key, isNotEqualTo: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isNotEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.whereIn:
-            query = query.where(docQuery.key, whereIn: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                whereIn: docQuery.value);
             break;
           case DocumentFieldCondition.arrayContains:
-            query = query.where(docQuery.key, arrayContains: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                arrayContains: docQuery.value);
             break;
         }
       }
@@ -289,32 +317,60 @@ class DatabaseFirestoreImplementation implements Database {
       for (DocumentQuery docQuery in filters) {
         switch (docQuery.condition) {
           case DocumentFieldCondition.isEqualTo:
-            query = query.where(docQuery.key, isEqualTo: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.isGreaterThan:
-            query = query.where(docQuery.key, isGreaterThan: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isGreaterThan: docQuery.value);
             break;
           case DocumentFieldCondition.isGreaterThanOrEqualTo:
             query = query.where(
-              docQuery.key,
-              isGreaterThanOrEqualTo: docQuery.value,
-            );
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isGreaterThanOrEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.isLessThan:
-            query = query.where(docQuery.key, isLessThan: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isLessThan: docQuery.value);
             break;
           case DocumentFieldCondition.isLessThanOrEqualTo:
-            query =
-                query.where(docQuery.key, isLessThanOrEqualTo: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isLessThanOrEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.isNotEqualTo:
-            query = query.where(docQuery.key, isNotEqualTo: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isNotEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.whereIn:
-            query = query.where(docQuery.key, whereIn: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                whereIn: docQuery.value);
             break;
           case DocumentFieldCondition.arrayContains:
-            query = query.where(docQuery.key, arrayContains: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                arrayContains: docQuery.value);
             break;
         }
       }
@@ -438,32 +494,59 @@ class DatabaseFirestoreImplementation implements Database {
       for (DocumentQuery docQuery in filters) {
         switch (docQuery.condition) {
           case DocumentFieldCondition.isEqualTo:
-            query = query.where(docQuery.key, isEqualTo: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.isGreaterThan:
-            query = query.where(docQuery.key, isGreaterThan: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isGreaterThan: docQuery.value);
             break;
           case DocumentFieldCondition.isGreaterThanOrEqualTo:
             query = query.where(
-              docQuery.key,
+              docQuery.isDocumentIdQuery ? FieldPath.documentId : docQuery.key,
               isGreaterThanOrEqualTo: docQuery.value,
             );
             break;
           case DocumentFieldCondition.isLessThan:
-            query = query.where(docQuery.key, isLessThan: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isLessThan: docQuery.value);
             break;
           case DocumentFieldCondition.isLessThanOrEqualTo:
-            query =
-                query.where(docQuery.key, isLessThanOrEqualTo: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isLessThanOrEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.isNotEqualTo:
-            query = query.where(docQuery.key, isNotEqualTo: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isNotEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.whereIn:
-            query = query.where(docQuery.key, whereIn: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                whereIn: docQuery.value);
             break;
           case DocumentFieldCondition.arrayContains:
-            query = query.where(docQuery.key, arrayContains: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                arrayContains: docQuery.value);
             break;
         }
       }
@@ -523,32 +606,60 @@ class DatabaseFirestoreImplementation implements Database {
       for (DocumentQuery docQuery in filters) {
         switch (docQuery.condition) {
           case DocumentFieldCondition.isEqualTo:
-            query = query.where(docQuery.key, isEqualTo: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.isGreaterThan:
-            query = query.where(docQuery.key, isGreaterThan: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isGreaterThan: docQuery.value);
             break;
           case DocumentFieldCondition.isGreaterThanOrEqualTo:
             query = query.where(
-              docQuery.key,
-              isGreaterThanOrEqualTo: docQuery.value,
-            );
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isGreaterThanOrEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.isLessThan:
-            query = query.where(docQuery.key, isLessThan: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isLessThan: docQuery.value);
             break;
           case DocumentFieldCondition.isLessThanOrEqualTo:
-            query =
-                query.where(docQuery.key, isLessThanOrEqualTo: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isLessThanOrEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.isNotEqualTo:
-            query = query.where(docQuery.key, isNotEqualTo: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                isNotEqualTo: docQuery.value);
             break;
           case DocumentFieldCondition.whereIn:
-            query = query.where(docQuery.key, whereIn: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                whereIn: docQuery.value);
             break;
           case DocumentFieldCondition.arrayContains:
-            query = query.where(docQuery.key, arrayContains: docQuery.value);
+            query = query.where(
+                docQuery.isDocumentIdQuery
+                    ? FieldPath.documentId
+                    : docQuery.key,
+                arrayContains: docQuery.value);
             break;
         }
       }
