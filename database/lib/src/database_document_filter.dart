@@ -4,14 +4,20 @@ class DocumentQuery {
   String key;
 
   /// The value of the field parameter.
+  /// Note in case of whereIn the value should be a list with max
+  /// of 30 values.
   dynamic value;
 
   /// Database querying condition to be applied on the
   /// value of the field parameter.
   DocumentFieldCondition condition;
 
+  /// Whether the query is apply on document id.
+  bool isDocumentIdQuery;
+
   /// Constructs the document query field class.
-  DocumentQuery(this.key, this.value, this.condition);
+  DocumentQuery(this.key, this.value, this.condition,
+      {this.isDocumentIdQuery = false});
 }
 
 /// A document field specification for querying.
