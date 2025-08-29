@@ -54,7 +54,7 @@
 
 - Fix the fake database filter.
 
-## [0.0.16] - 25-08-2025
+## [0.0.17] - 29-08-2025
 
-- Allow query with document id.
+- Allow query with document id and fix the fake database filter.
 

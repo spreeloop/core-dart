@@ -2592,12 +2592,12 @@ Future<void> _removeItemsOnCollection() async {
 Future<void> _removeItemsOnCollectionWithCondition1() async {
   test('Remove elements of collection if values does not match', () async {
     final dbInstance = Database.fake(testDatabase);
-    final String key1 = 'userPath';
-    final dynamic value1 = 'users/users_1';
-    final String key2 = 'itemPath';
-    final dynamic value2 = 'restaurants/restaurants_1/menuItems/menuItems_1';
-    final DocumentFieldCondition spec1 = DocumentFieldCondition.isEqualTo;
-    final DocumentFieldCondition spec2 = DocumentFieldCondition.isEqualTo;
+    const String key1 = 'userPath';
+    const dynamic value1 = 'users/users_1';
+    const String key2 = 'itemPath';
+    const dynamic value2 = 'restaurants/restaurants_1/menuItems/menuItems_1';
+    const DocumentFieldCondition spec1 = DocumentFieldCondition.isEqualTo;
+    const DocumentFieldCondition spec2 = DocumentFieldCondition.isEqualTo;
 
     final List<DocumentQuery> fieldsToQuery = [
       DocumentQuery(key1, value1, spec1),
@@ -2620,9 +2620,9 @@ Future<void> _removeItemsOnCollectionWithCondition1() async {
 Future<void> _removeItemsOnCollectionWithCondition2() async {
   test('Remove elements of collection if values match', () async {
     final dbInstance = Database.fake(testDatabase);
-    final String key1 = 'userPath';
-    final dynamic value1 = 'users/users_2';
-    final DocumentFieldCondition spec1 = DocumentFieldCondition.isEqualTo;
+    const String key1 = 'userPath';
+    const dynamic value1 = 'users/users_2';
+    const DocumentFieldCondition spec1 = DocumentFieldCondition.isEqualTo;
 
     final List<DocumentQuery> fieldsToQuery = [
       DocumentQuery(key1, value1, spec1),
@@ -2649,9 +2649,9 @@ Future<void> _removeItemsOnCollectionWithCondition2() async {
 Future<void> _removeItemsOnCollectionWithCondition3() async {
   test('Remove elements of collection if values is greater than', () async {
     final dbInstance = Database.fake(testDatabase);
-    final String key1 = 'rating';
-    final dynamic value1 = 4.0;
-    final DocumentFieldCondition spec1 = DocumentFieldCondition.isGreaterThan;
+    const String key1 = 'rating';
+    const dynamic value1 = 4.0;
+    const DocumentFieldCondition spec1 = DocumentFieldCondition.isGreaterThan;
 
     final List<DocumentQuery> fieldsToQuery = [
       DocumentQuery(key1, value1, spec1),
@@ -2950,7 +2950,7 @@ Future<void> _testNonRetrieveRecordByValue() async {
 
 Future<void> _setRecordTestGroup() async {
   group('Set Record', () {
-    final documentPath = '/temp/01';
+    const documentPath = '/temp/01';
     final document = {
       'key_1': 1,
       'key_2': 'value_2',
