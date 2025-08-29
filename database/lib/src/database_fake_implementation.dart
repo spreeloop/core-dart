@@ -245,7 +245,6 @@ class DatabaseFakeImplementation implements Database {
               (previousValue, element) =>
                   previousValue is Map ? previousValue[element] : null,
             );
-
     // Create a deep clone of the retrieved data.
     final Map<dynamic, dynamic>? col =
         originalCol == null ? null : jsonDecode(jsonEncode(originalCol));
@@ -259,25 +258,37 @@ class DatabaseFakeImplementation implements Database {
       for (var docQuery in filters) {
         final DocumentFieldCondition condition = docQuery.condition;
         final dynamic valueData = _getNestedValue(map, docQuery.key);
-        if (valueData == null) {
+        if (valueData == null && !docQuery.isDocumentIdQuery) {
           return;
         }
         if ((condition == DocumentFieldCondition.isEqualTo &&
-                valueData != docQuery.value) ||
+                (docQuery.isDocumentIdQuery ? k : valueData) !=
+                    docQuery.value) ||
             (condition == DocumentFieldCondition.isGreaterThan &&
-                valueData.compareTo(docQuery.value) <= 0) ||
+                (docQuery.isDocumentIdQuery ? k : valueData)
+                        .compareTo(docQuery.value) <=
+                    0) ||
             (condition == DocumentFieldCondition.isGreaterThanOrEqualTo &&
-                valueData.compareTo(docQuery.value) < 0) ||
+                (docQuery.isDocumentIdQuery ? k : valueData)
+                        .compareTo(docQuery.value) <
+                    0) ||
             (condition == DocumentFieldCondition.isLessThan &&
-                valueData.compareTo(docQuery.value) >= 0) ||
+                (docQuery.isDocumentIdQuery ? k : valueData)
+                        .compareTo(docQuery.value) >=
+                    0) ||
             (condition == DocumentFieldCondition.isLessThanOrEqualTo &&
-                valueData.compareTo(docQuery.value) > 0) ||
+                (docQuery.isDocumentIdQuery ? k : valueData)
+                        .compareTo(docQuery.value) >
+                    0) ||
             (condition == DocumentFieldCondition.isNotEqualTo &&
-                valueData == docQuery.value) ||
+                (docQuery.isDocumentIdQuery ? k : valueData) ==
+                    docQuery.value) ||
             (condition == DocumentFieldCondition.whereIn &&
-                !(docQuery.value as List<dynamic>).contains(valueData)) ||
+                !(docQuery.value as List<dynamic>)
+                    .contains(docQuery.isDocumentIdQuery ? k : valueData)) ||
             (condition == DocumentFieldCondition.arrayContains &&
-                !(valueData).contains(docQuery.value))) {
+                !(docQuery.isDocumentIdQuery ? k : valueData)
+                    .contains(docQuery.value))) {
           return;
         }
       }
@@ -476,25 +487,38 @@ class DatabaseFakeImplementation implements Database {
       for (var docQuery in filters) {
         final DocumentFieldCondition condition = docQuery.condition;
         final dynamic valueData = _getNestedValue(value, docQuery.key);
-        if (valueData == null) {
+        if (valueData == null && !docQuery.isDocumentIdQuery) {
           return;
         }
+
         if ((condition == DocumentFieldCondition.isEqualTo &&
-                valueData != docQuery.value) ||
+                (docQuery.isDocumentIdQuery ? key : valueData) !=
+                    docQuery.value) ||
             (condition == DocumentFieldCondition.isGreaterThan &&
-                valueData.compareTo(docQuery.value) <= 0) ||
+                (docQuery.isDocumentIdQuery ? key : valueData)
+                        .compareTo(docQuery.value) <=
+                    0) ||
             (condition == DocumentFieldCondition.isGreaterThanOrEqualTo &&
-                valueData.compareTo(docQuery.value) < 0) ||
+                (docQuery.isDocumentIdQuery ? key : valueData)
+                        .compareTo(docQuery.value) <
+                    0) ||
             (condition == DocumentFieldCondition.isLessThan &&
-                valueData.compareTo(docQuery.value) >= 0) ||
+                (docQuery.isDocumentIdQuery ? key : valueData)
+                        .compareTo(docQuery.value) >=
+                    0) ||
             (condition == DocumentFieldCondition.isLessThanOrEqualTo &&
-                valueData.compareTo(docQuery.value) > 0) ||
+                (docQuery.isDocumentIdQuery ? key : valueData)
+                        .compareTo(docQuery.value) >
+                    0) ||
             (condition == DocumentFieldCondition.isNotEqualTo &&
-                valueData == docQuery.value) ||
+                (docQuery.isDocumentIdQuery ? key : valueData) ==
+                    docQuery.value) ||
             (condition == DocumentFieldCondition.whereIn &&
-                !(docQuery.value as List<dynamic>).contains(valueData)) ||
+                !(docQuery.value as List<dynamic>)
+                    .contains(docQuery.isDocumentIdQuery ? key : valueData)) ||
             (condition == DocumentFieldCondition.arrayContains &&
-                !(valueData).contains(docQuery.value))) {
+                !(docQuery.isDocumentIdQuery ? key : valueData)
+                    .contains(docQuery.value))) {
           return;
         }
       }
