@@ -13,3 +13,7 @@
 ## [0.0.4] - 19-03-2025
 
 - Update firebase_crashlytics to last version.
+
+## [0.0.5] - 14-10-2025
+
+- Update package.
