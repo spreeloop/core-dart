@@ -58,3 +58,7 @@
 
 - Allow query with document id and fix the fake database filter.
 
+## [0.0.18] - 14-10-2025
+
+- Update package firestore.
+
