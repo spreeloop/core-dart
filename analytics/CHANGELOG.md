@@ -9,3 +9,7 @@
 ## [0.0.3] - 19-03-2025
 
 - Update firebase_analytics to last version.
+
+## [0.0.4] - 14-10-2025
+
+- Update firebase_analytics to last version.
